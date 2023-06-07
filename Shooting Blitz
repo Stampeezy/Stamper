@@ -1,0 +1,139 @@
+Great! Here's an example code for a simple shooting game in Python:
+
+```
+
+import pygame
+
+import random
+
+# Initialize Pygame
+
+pygame.init()
+
+# Set up the game window
+
+screen_width = 800
+
+screen_height = 600
+
+screen = pygame.display.set_mode((screen_width, screen_height))
+
+pygame.display.set_caption("Shooting Game")
+
+# Set up the player
+
+player_width = 50
+
+player_height = 50
+
+player_x = screen_width / 2 - player_width / 2
+
+player_y = screen_height - player_height - 10
+
+player_speed = 5
+
+player_color = (0, 0, 255)
+
+# Set up the bullet
+
+bullet_width = 10
+
+bullet_height = 20
+
+bullet_speed = 10
+
+bullet_color = (255, 0, 0)
+
+# Set up the enemy
+
+enemy_width = 50
+
+enemy_height = 50
+
+enemy_speed = 3
+
+enemy_color = (255, 255, 0)
+
+# Set up the score
+
+score = 0
+
+font = pygame.font.Font(None, 36)
+
+# Set up the clock
+
+clock = pygame.time.Clock()
+
+# Set up the game loop
+
+running = True
+
+while running:
+
+    # Handle events
+
+    for event in pygame.event.get():
+
+        if event.type == pygame.QUIT:
+
+            running = False
+
+        elif event.type == pygame.KEYDOWN:
+
+            if event.key == pygame.K_SPACE:
+
+                # Fire a bullet
+
+                bullet_x = player_x + player_width / 2 - bullet_width / 2
+
+                bullet_y = player_y
+
+                bullet_rect = pygame.Rect(bullet_x, bullet_y, bullet_width, bullet_height)
+
+                bullets.append(bullet_rect)
+
+    
+
+    # Move the player
+
+    keys = pygame.key.get_pressed()
+
+    if keys[pygame.K_LEFT] and player_x > 0:
+
+        player_x -= player_speed
+
+    if keys[pygame.K_RIGHT] and player_x < screen_width - player_width:
+
+        player_x += player_speed
+
+    
+
+    # Move the bullets
+
+    for bullet_rect in bullets:
+
+        bullet_rect.y -= bullet_speed
+
+        if bullet_rect.y < 0:
+
+            bullets.remove(bullet_rect)
+
+    
+
+    # Move the enemies
+
+    for enemy_rect in enemies:
+
+        enemy_rect.y += enemy_speed
+
+        if enemy_rect.y > screen_height:
+
+            enemies.remove(enemy_rect)
+
+            score -= 1
+
+    
+
+    # Check for collisions
+
+    for bullet_rect in bullets: 
